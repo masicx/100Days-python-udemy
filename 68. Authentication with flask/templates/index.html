@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
+{% if logged_in: %}
 <div class="box">
   <h1>Flask Authentication</h1>
   <!-- TODO: Hide the Login/Registration buttons for logged-in users -->
@@ -12,5 +13,5 @@
     >Register</a
   >
 </div>
-
+{% endif %}
 {% endblock %}
