@@ -28,7 +28,6 @@ class User(db.Model):
     password: Mapped[str] = mapped_column(String(100))
     name: Mapped[str] = mapped_column(String(1000))
 
-
 with app.app_context():
     db.create_all()
 
@@ -38,8 +37,16 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/register')
+@app.route('/register', methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        email = request.form.get('email')
+        username = request.form.get('name')
+        password = str(request.form.get('password'))
+        user = User(email=email, name=username, password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('secrets'))
     return render_template("register.html")
 
 
@@ -60,7 +67,7 @@ def logout():
 
 @app.route('/download')
 def download():
-    pass
+    return send_from_directory(directory='static', path='files/cheat_sheet.pdf')
 
 
 if __name__ == "__main__":
