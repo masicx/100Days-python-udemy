@@ -8,10 +8,6 @@ Controles:
 import turtle
 import time
 
-
-# ---------------------------------------------------------
-# CONFIGURACIÓN GENERAL
-# ---------------------------------------------------------
 WIDTH_SCREEN = 800
 HEIGHT_SCREEN = 600
 COLOR_FONDO = "black"
@@ -237,9 +233,6 @@ class GameBreakout:
             time.sleep(1 / 60)  # ~60 FPS
 
 
-# ---------------------------------------------------------
-# PUNTO DE ENTRADA
-# ---------------------------------------------------------
 if __name__ == "__main__":
     game = GameBreakout()
     game.execute()
