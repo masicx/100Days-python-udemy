@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cafe&Wifi API</title>
+  {{ bootstrap.load_css() }}
+  <script src="https://kit.fontawesome.com/225f09b9b9.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <h1>Welcome to the Cafe & Wifi API</h1>
+  <section class="layout_padding-bottom">
+    <div class="container">
+      <div class="filters-content">
+        <ul class="filters_menu">
+          <li class="{% if filter == 'all' %}active{% endif %}"><a href="{{ url_for('home', filter='all') }}">All</a>
+          </li>
+          <li class="{% if filter == 'has_toilet' %}active{% endif %}"><a
+              href="{{ url_for('home', filter='has_toilet') }}">Toilets</a></li>
+          <li class="{% if filter == 'has_wifi' %}active{% endif %}"><a
+              href="{{ url_for('home', filter='has_wifi') }}">Wifi</a></li>
+          <li class="{% if filter == 'has_sockets' %}active{% endif %}"><a
+              href="{{ url_for('home', filter='has_sockets') }}">Sockets</a></li>
+          <li class="{% if filter == 'can_take_calls' %}active{% endif %}"><a
+              href="{{ url_for('home', filter='can_take_calls') }}">Calls</a></li>
+        </ul>
+        <div class="row grid" style="position: relative; height: 1398px;">
+          {% for cafe in cafes %}
+          <div class="col-sm-6 col-lg-4 all">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="{{ cafe.img_url }}" alt="{{ cafe.name }}">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    {{ cafe.name }}
+                  </h5>
+                  <p>
+                    {{ cafe.location }}
+                  </p>
+                  <div class="options">
+                    <h6>
+                      {{ cafe.coffee_price }}
+                    </h6>
+                    {% if cafe.has_toilet %}
+                    <i class="fas fa-toilet"></i>
+                    {% endif %}
+                    {% if cafe.has_wifi %}
+                    <i class="fas fa-wifi"></i>
+                    {% endif %}
+                    {% if cafe.has_sockets %}
+                    <i class="fas fa-plug"></i>
+                    {% endif %}
+                    {% if cafe.can_take_calls %}
+                    <i class="fas fa-phone"></i>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</body>
+
+</html>

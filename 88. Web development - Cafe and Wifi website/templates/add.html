@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    {{ bootstrap.load_css() }}
+</head>
+
+<body>
+    <h1>Add New Item</h1>
+    <div class="container-fluid">
+        <form action="{{ url_for('add_cafe') }}" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+
+            </div>
+            <div class="form-group">
+                <label for="map_url">Map URL</label>
+                <input type="text" name="map_url" placeholder="Map URL" required="required" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="img_url">Image URL</label>
+                <input type="text" name="img_url" placeholder="Image URL" required="required" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" name="location" placeholder="Location" required="required" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="seats">Seats</label>
+                <input type="number" name="seats" placeholder="Seats" required="required" class="form-control" />
+            </div>
+            <div class="highlight">
+                <div class="form-group">
+                    <input type="checkbox" name="has_toilet" placeholder="Has Toilet"
+                        class="form-check-input" />
+                    <label for="has_toilet" class="form-check-label">Has Toilet</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="has_wifi" placeholder="Has WiFi"
+                        class="form-check-input" />
+                    <label for="has_wifi" class="form-check-label">Has WiFi</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="has_sockets" placeholder="Has Sockets"
+                        class="form-check-input" />
+                    <label for="has_sockets" class="form-check-label">Has Sockets</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="can_take_calls" placeholder="Can Take Calls"
+                        class="form-check-input" />
+                    <label for="can_take_calls" class="form-check-label">Can Take Calls</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="coffee_price">Coffee Price</label>
+                <input type="text" name="coffee_price" placeholder="Coffee Price" required="required"
+                    class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-large">Add</button>
+                <button type="reset" class="btn btn-secondary btn-block btn-large">Reset</button>
+                <a href="{{ url_for('home', filter='all') }}" class="btn btn-danger btn-block btn-large">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
